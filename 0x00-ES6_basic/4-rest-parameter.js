@@ -1,4 +1,3 @@
-export default function getSumOfHoods(initialNumber, ...expansions) {
-    return expansions.reduce((sum, expansion) => sum + expansion, initialNumber);
+export default function returnHowManyArguments(...args) {
+    return args.length;
   }
-  
