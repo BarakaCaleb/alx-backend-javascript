@@ -1,5 +1,5 @@
 {
-  "name": "0x00-ES6_basic",
+  "name": "0x00-es6_basic",
   "version": "1.0.0",
   "description": "A project setup with Jest, Babel, and ESLint",
   "main": "index.js",
