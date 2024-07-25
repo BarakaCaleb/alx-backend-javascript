@@ -5,7 +5,7 @@ function initializeRooms() {
     const object2 = new ClassRoom(20);
     const object3 = new ClassRoom(24);
     const list = [object1, object2, object3];
-
+    
     return(list);
 }
 
