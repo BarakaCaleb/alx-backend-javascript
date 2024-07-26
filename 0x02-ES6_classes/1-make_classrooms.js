@@ -7,3 +7,4 @@ export default function initializeRooms() {
   const newList = [class1, class2, class3];
   return (newList);
 }
+
