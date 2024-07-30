@@ -21,4 +21,3 @@ export default function updateStudentGradeByCity(list, city, newGrade) {
       });
   }
 
-  
