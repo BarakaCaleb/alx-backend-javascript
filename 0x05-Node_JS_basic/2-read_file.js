@@ -1,29 +1,38 @@
-//Read the file synchronously using the fs.readFileSync method.
-//Handle errors if the file doesn't exist.
-//Parse the CSV content to extract the students and their respective fields.
-//Filter out empty lines in the CSV file.
-//Group students by their fields and count them.
-//Log the results in the required format.
-
 const fs = require('fs');
 
-//Read file synchronously
-
-const countStudents = (path) => {
-    try {
-        //Read the file synchronously
-        const data = fs.readFileSync(path, 'utf8');
-        // Split the data by new lines and remove empty lines
-        const lines = data.split('\n').filter((line) => line.trim() !== '');
-
-        if (lines.lengt <=1) {
-            console.log('No students found in the database.');
-            return;
+function countStudents(fileName) {
+  const students = {};
+  const fields = {};
+  let length = 0;
+  try {
+    const content = fs.readFileSync(fileName, 'utf-8');
+    const lines = content.toString().split('\n');
+    for (let i = 0; i < lines.length; i += 1) {
+      if (lines[i]) {
+        length += 1;
+        const field = lines[i].toString().split(',');
+        if (Object.prototype.hasOwnProperty.call(students, field[3])) {
+          students[field[3]].push(field[0]);
+        } else {
+          students[field[3]] = [field[0]];
         }
-
-        const headers = lines[0].split(',');
-        const student = lines.slice(1);
-
-        const fields = {};
+        if (Object.prototype.hasOwnProperty.call(fields, field[3])) {
+          fields[field[3]] += 1;
+        } else {
+          fields[field[3]] = 1;
+        }
+      }
     }
+    const l = length - 1;
+    console.log(`Number of students: ${l}`);
+    for (const [key, value] of Object.entries(fields)) {
+      if (key !== 'field') {
+        console.log(`Number of students in ${key}: ${value}. List: ${students[key].join(', ')}`);
+      }
+    }
+  } catch (error) {
+    throw Error('Cannot load the database');
+  }
 }
+
+module.exports = countStudents;
